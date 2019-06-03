@@ -1,13 +1,11 @@
 # Sample application
 
+## This project requires tomcat 8
+
+Download from here ```https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.24/bin/
+
 This is a super simple JAX-RS RESTEasy Spring Boot application just to exercise RESTEasy Spring Boot starter.<br>
 
-## Starting the application
-
-You can start the application as you for any other regular Spring Boot application. For example:
-
-1. From the command line, under the sample application project, run `mvn spring-boot:run`
-1. From your favorite IDE, run class `com.test.Application`
 
 ## Testing it
 
