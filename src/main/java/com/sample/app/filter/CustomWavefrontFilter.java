@@ -1,9 +1,5 @@
 package com.sample.app.filter;
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 
 import com.wavefront.config.ReportingUtils;
 import com.wavefront.config.WavefrontReportingConfig;
