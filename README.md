@@ -4,7 +4,10 @@
 
 Download from here ```https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.24/bin/```
 
+After installing Tomcat, set the CATALINA_HOME and JAVA_HOME env variables and then run ``` sh build.sh && deploy.sh ``` to build and launch the sample application
+
 This is a super simple JAX-RS RESTEasy Spring Boot application just to exercise RESTEasy Spring Boot starter.<br>
+
 
 
 ## Testing it
