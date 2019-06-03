@@ -2,7 +2,7 @@
 
 ## This project requires tomcat 8
 
-Download from here ```https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.24/bin/
+Download from here ```https://archive.apache.org/dist/tomcat/tomcat-8/v8.0.24/bin/```
 
 This is a super simple JAX-RS RESTEasy Spring Boot application just to exercise RESTEasy Spring Boot starter.<br>
 
