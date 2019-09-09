@@ -35,3 +35,4 @@ You should receive a response message with a payload similar to this as result:
 
 The request message payload can be anything as plain text.
 The response message is supposed to echo that, plus a timestamp of the moment the echo response was created on the server side. The response message will be in JSON format.
+# tracing-shell-app

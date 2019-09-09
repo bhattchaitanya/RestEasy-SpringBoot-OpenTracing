@@ -9,6 +9,7 @@ import com.wavefront.sdk.common.WavefrontSender;
 import com.wavefront.sdk.common.application.ApplicationTags;
 import com.wavefront.sdk.jaxrs.reporter.WavefrontJaxrsReporter;
 import com.wavefront.sdk.jaxrs.server.WavefrontJaxrsServerFilter.Builder;
+import io.opentracing.Span;
 import io.opentracing.Tracer;
 import io.opentracing.util.GlobalTracer;
 
@@ -19,13 +20,16 @@ import javax.ws.rs.ext.Provider;
 
 import org.apache.commons.lang3.BooleanUtils;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Provider
 public class CustomWavefrontFilter implements DynamicFeature {
     private Builder wfJaxrsFilterBuilder;
     private WavefrontJaxrsReporter wavefrontJaxrsReporter;
     private Tracer tracer;
-    private static int isReportStarted = 0;
 
     public CustomWavefrontFilter(ApplicationTags applicationTags, WavefrontReportingConfig wavefrontReportingConfig) {
         String source = wavefrontReportingConfig.getSource();
@@ -37,16 +41,15 @@ public class CustomWavefrontFilter implements DynamicFeature {
             wfSpanReporter = new WavefrontSpanReporter.Builder().withSource(source).build(wavefrontSender);
             this.tracer = new WavefrontTracer.Builder(wfSpanReporter, applicationTags).build();
             wfJaxrsFilterBuilder.withTracer(this.tracer);
+            wfJaxrsFilterBuilder.headerTags(new HashSet<String>(Arrays.asList("intuit_tid","intuit_userid")));
             GlobalTracer.register(this.tracer);
         }
-
+        this.wavefrontJaxrsReporter.start();
     }
 
     @Override
     public void configure(ResourceInfo resourceInfo, FeatureContext featureContext) {
-            this.wavefrontJaxrsReporter.start();
-            featureContext.register(this.wfJaxrsFilterBuilder.build());
-            System.out.println("################ Executed once ######################");
+        featureContext.register(this.wfJaxrsFilterBuilder.build());
     }
 
     public Tracer getTracer() {

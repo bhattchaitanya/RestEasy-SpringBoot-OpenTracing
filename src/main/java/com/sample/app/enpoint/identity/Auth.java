@@ -12,9 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Echo REST endpoint class
- *
- * @author Fabio Carvalho (facarvalho@paypal.com or fabiocarvalho777@gmail.com)
- */
+ **/
 @Path("/echo")
 @Component
 public class Echo {

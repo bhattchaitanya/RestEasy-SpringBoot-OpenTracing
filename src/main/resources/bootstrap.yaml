@@ -1,0 +1,38 @@
+resteasy:
+  jaxrs:
+    app:
+      registration: property
+      classes: com.sample.app.configuration.JaxrsApplication
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+logging:
+  level:
+    org:
+      springframework: info
+---
+spring:
+  profiles: prd-aws
+opentrace:
+ enabled: true
+ source:
+    application: ius-app
+    cluster: us-west-1
+    service: ius
+    shard: primary
+    customTags:
+      location: aws
+      env: prd
+ target:
+    reportingMechanism: "direct"
+    server: "https://reinvent.wavefront.com"
+    token: "{secret}idps:/opentrace/wavefront/token"
+    source: "IUS"
+    reportTraces: true
