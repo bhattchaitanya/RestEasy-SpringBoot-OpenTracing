@@ -1,11 +1,10 @@
-package com.sample.app.enpoint.echo;
+package com.sample.app.enpoint.identity;
 
-import com.sample.app.client.RemoteClient;
-import com.sample.app.configuration.OpenTraceConfig;
+import com.sample.app.client.routes.ClientWithOpenTraceFilter;
+import com.sample.app.opentrace.config.OpenTraceConfig;
 import com.sample.app.endpoint.timestamp.Timestamp;
-import com.sample.app.filter.client.OpenTraceHttpClientInterceptorBuilder;
-import com.sample.app.filter.client.OpenTraceJaxRsClientFilterBuilder;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,33 +16,22 @@ import javax.annotation.PostConstruct;
  *
  */
 @Component
-public class EchoMessage {
+public class AuthMessage {
 
     private long timestampFromRemote;
     private String echoText;
-    Timestamp tStamp;
+    Timestamp timestamp;
 
     @Autowired
     OpenTraceConfig config;
 
 
     @Autowired
-    Timestamp timestamp;
+    ClientWithOpenTraceFilter clientWithOpenTraceFilter;
 
-    @Autowired
-    RemoteClient remoteClient;
-
-    @Autowired
-    OpenTraceJaxRsClientFilterBuilder openTraceClientFilterBuilder;
-
-    @Autowired
-    OpenTraceHttpClientInterceptorBuilder httpClientInterceptorBuilder;
 
     @PostConstruct
     public void init() {
-        tStamp = remoteClient.createClient(Timestamp.class,
-                httpClientInterceptorBuilder.getWavefrontHttpRequestClientFilter(),
-                httpClientInterceptorBuilder.getWavefrontHttpResponseClientFilter());
         echoText = this.echoText;
     }
 
@@ -60,12 +48,21 @@ public class EchoMessage {
     }
 
     public void setEchoText(String echoText){
-        timestampFromRemote = tStamp.timestamp();
+        MDC.put("tester-id","mdc-value-echo-IUS-2212");
+
+        timestampFromRemote = clientWithOpenTraceFilter.getTimestampClient().timestamp();
         String tempToken = null;
         if(config.getTarget() != null && config.getTarget().getToken() != null){
             tempToken = config.getTarget().getToken();
             tempToken = new String(Base64.decodeBase64(tempToken));
             this.echoText = echoText + " " + tempToken;
+            int i = 0;
+            while(i < 0){
+                this.echoText = this.echoText + "\n" + "RiskProfile = "
+                        +clientWithOpenTraceFilter.getRiskAnalysisClient().riskanalysis();
+                i++;
+            }
+
         }else{
             this.echoText = echoText;
         }

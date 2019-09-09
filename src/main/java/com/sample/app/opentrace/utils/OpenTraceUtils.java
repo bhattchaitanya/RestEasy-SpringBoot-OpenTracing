@@ -1,6 +1,6 @@
-package com.sample.app;
+package com.sample.app.opentrace.utils;
 
-import com.sample.app.configuration.OpenTraceConfig;
+import com.sample.app.opentrace.config.OpenTraceConfig;
 import com.sample.app.opentrace.WavefrontTracer;
 import com.wavefront.config.WavefrontReportingConfig;
 import com.wavefront.sdk.common.application.ApplicationTags;

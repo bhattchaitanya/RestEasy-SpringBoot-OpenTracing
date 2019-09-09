@@ -1,5 +1,8 @@
-package com.sample.app.endpoint.address;
+package com.sample.app.endpoint.Phone;
 
+import com.sample.app.client.routes.ClientWithOpenTraceFilter;
+import com.sample.app.endpoint.timestamp.Timestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,12 +11,20 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class AddressImpl implements Address {
+public class PhoneImpl implements Phone {
 
-    private long timestamp;
+
+    Timestamp tStamp;
+    private String phone = "510100000";
+
+
+    @Autowired
+    ClientWithOpenTraceFilter clientWithOpenTraceFilter;
+
 
     @Override
-    public long timestamp() {
-        return System.currentTimeMillis();
+    public String phone(){
+        clientWithOpenTraceFilter.getAddressClient().getAddress();
+        return phone;
     }
 }

@@ -1,5 +1,8 @@
-package com.sample.app.endpoint.timestamp;
+package com.sample.app.endpoint.address;
 
+import com.sample.app.client.routes.ClientWithOpenTraceFilter;
+import com.sample.app.endpoint.timestamp.Timestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,12 +11,19 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class TimestampImpl implements Timestamp{
+public class AddressImpl implements Address {
 
-    private long timestamp;
+    private String address;
+
+    Timestamp tStamp;
+
+    @Autowired
+    ClientWithOpenTraceFilter clientWithOpenTraceFilter;
+
 
     @Override
-    public long timestamp() {
-        return System.currentTimeMillis();
+    public String getAddress() {
+        clientWithOpenTraceFilter.getRiskAnalysisClient().riskanalysis();
+        return "7535 Torrey Santa Fe, CA - 92078";
     }
 }

@@ -1,4 +1,4 @@
-package com.sample.app.endpoint.address;
+package com.sample.app.endpoint.Phone;
 
 import org.springframework.stereotype.Component;
 
@@ -11,12 +11,12 @@ import javax.ws.rs.core.MediaType;
  * Echo REST endpoint class
  **/
 @Component
-@Path("/timestamp")
-public interface Address {
+@Path("/phone")
+public interface Phone {
 
     @GET
-    @Path("/timestamp")
+    @Path("/phone")
     @Produces({ MediaType.APPLICATION_JSON })
-    public long timestamp();
+    public String phone();
 
 }

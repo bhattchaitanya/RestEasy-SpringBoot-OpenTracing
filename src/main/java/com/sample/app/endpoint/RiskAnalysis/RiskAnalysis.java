@@ -1,4 +1,4 @@
-package com.sample.app.endpoint.Phone;
+package com.sample.app.endpoint.RiskAnalysis;
 
 import org.springframework.stereotype.Component;
 
@@ -11,12 +11,12 @@ import javax.ws.rs.core.MediaType;
  * Echo REST endpoint class
  **/
 @Component
-@Path("/timestamp")
-public interface Phone {
+@Path("/riskanalysis")
+public interface RiskAnalysis {
 
     @GET
-    @Path("/timestamp")
+    @Path("/riskanalysis")
     @Produces({ MediaType.APPLICATION_JSON })
-    public long timestamp();
+    public String riskanalysis();
 
 }

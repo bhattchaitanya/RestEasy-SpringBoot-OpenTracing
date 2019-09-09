@@ -1,4 +1,4 @@
-package com.sample.app.configuration;
+package com.sample.app.opentrace.config;
 
 import com.wavefront.sdk.entities.tracing.sampling.Sampler;
 import org.apache.commons.codec.binary.Base64;

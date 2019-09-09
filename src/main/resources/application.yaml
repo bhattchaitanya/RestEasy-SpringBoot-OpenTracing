@@ -17,3 +17,154 @@ logging:
   level:
     org:
       springframework: info
+---
+spring:
+  profiles: echo
+opentrace:
+ enabled: false
+ samplerConfig:
+    enabled: true
+    samplerScope:
+      durationSampler:
+        enabled: false
+        durationInMilliSeconds: 60
+      rateSampler:
+        enabled: true
+        rate: 1
+ source:
+    application: identity
+    cluster: us-west-1
+    service: echo
+    shard: primary
+    customTags:
+      location: aws
+      env: prd
+ target:
+    reportingMechanism: "direct"
+    server: "https://reinvent.wavefront.com"
+    token: "{secret}idps:/opentrace/wavefront/token"
+    source: "IUS"
+    reportTraces: true
+---
+
+spring:
+  profiles: address
+opentrace:
+ enabled: false
+ samplerConfig:
+    enabled: false
+    samplerScope:
+      durationSampler:
+        enabled: false
+        durationInMilliSeconds: 60
+      rateSampler:
+        enabled: true
+        rate: 1
+ source:
+    application: identity
+    cluster: us-west-2
+    service: address
+    shard: swimlane-a
+    customTags:
+      location: aws
+      env: prd
+ target:
+    reportingMechanism: "direct"
+    server: "https://reinvent.wavefront.com"
+    token: "{secret}idps:/opentrace/wavefront/token"
+    source: "IUS"
+    reportTraces: true
+
+---
+
+spring:
+  profiles: timestamp
+opentrace:
+ enabled: false
+ samplerConfig:
+    enabled: false
+    samplerScope:
+      durationSampler:
+        enabled: false
+        durationInMilliSeconds: 60
+      rateSampler:
+        enabled: true
+        rate: 1
+ source:
+    application: identity
+    cluster: us-west-1
+    service: timestamp
+    shard: primary
+    customTags:
+      location: aws
+      env: prd
+ target:
+    reportingMechanism: "direct"
+    server: "https://reinvent.wavefront.com"
+    token: "{secret}idps:/opentrace/wavefront/token"
+    source: "IUS"
+    reportTraces: true
+
+---
+
+spring:
+  profiles: phone
+opentrace:
+ enabled: false
+ samplerConfig:
+    enabled: true
+    samplerScope:
+      durationSampler:
+        enabled: false
+        durationInMilliSeconds: 60
+      rateSampler:
+        enabled: true
+        rate: 1
+ source:
+    application: identity
+    cluster: us-west-1
+    service: phone
+    shard: primary
+    customTags:
+      location: aws
+      env: prd
+ target:
+    reportingMechanism: "direct"
+    server: "https://reinvent.wavefront.com"
+    token: "{secret}idps:/opentrace/wavefront/token"
+    source: "IUS"
+    reportTraces: true
+
+---
+
+spring:
+  profiles: risk
+opentrace:
+ enabled: false
+ samplerConfig:
+    enabled: true
+    samplerScope:
+      durationSampler:
+        enabled: false
+        durationInMilliSeconds: 60
+      rateSampler:
+        enabled: true
+        rate: 1
+ source:
+    application: identity
+    cluster: us-west-1
+    service: risk
+    shard: primary
+    customTags:
+      location: aws
+      env: prd
+ target:
+    reportingMechanism: "direct"
+    server: "https://reinvent.wavefront.com"
+    token: "{secret}idps:/opentrace/wavefront/token"
+    source: "IUS"
+    reportTraces: true
+
+---
+clientfilter:
+  apacheHttpClient: true

@@ -1,4 +1,4 @@
-package com.sample.app.enpoint.echo;
+package com.sample.app.enpoint.identity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,10 +15,10 @@ import javax.ws.rs.core.MediaType;
  **/
 @Path("/echo")
 @Component
-public class Echo {
+public class Auth {
 
     @Autowired
-    private EchoMessageCreator echoer;
+    private AuthMessageCreator echoer;
 
     /**
      * Receives a simple POST request message containing as payload
@@ -32,7 +32,7 @@ public class Echo {
     @POST
     @Consumes({ MediaType.TEXT_PLAIN })
     @Produces({ MediaType.APPLICATION_JSON })
-    public EchoMessage echo(@NotEmpty String echoText) {
+    public AuthMessage echo(@NotEmpty String echoText) {
         return echoer.createEchoMessage(echoText);
     }
 

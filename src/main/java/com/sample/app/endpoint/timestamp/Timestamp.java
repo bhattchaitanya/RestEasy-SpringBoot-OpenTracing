@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
  * Echo REST endpoint class
  **/
 @Component
+@Path("/timestamp")
 public interface Timestamp {
 
     @GET

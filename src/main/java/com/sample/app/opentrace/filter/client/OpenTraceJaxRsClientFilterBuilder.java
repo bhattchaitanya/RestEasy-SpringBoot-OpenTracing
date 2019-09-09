@@ -1,6 +1,6 @@
-package com.sample.app.filter.client;
+package com.sample.app.opentrace.filter.client;
 
-import com.sample.app.OpenTraceUtils;
+import com.sample.app.opentrace.utils.OpenTraceUtils;
 import com.sample.app.opentrace.WavefrontTracer;
 import com.wavefront.config.ReportingUtils;
 import com.wavefront.config.WavefrontReportingConfig;
@@ -14,15 +14,13 @@ import io.opentracing.util.GlobalTracer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.ext.Provider;
 
 @Provider
 @Component
-public class OpenTraceClientFilterBuilder {
+public class OpenTraceJaxRsClientFilterBuilder {
 
     private static final Logger logger = LogManager.getLogger(WavefrontTracer.class);
 

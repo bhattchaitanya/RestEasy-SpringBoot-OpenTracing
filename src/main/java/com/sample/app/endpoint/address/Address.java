@@ -1,22 +1,22 @@
-package com.sample.app.endpoint.timestamp;
+package com.sample.app.endpoint.address;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotEmpty;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
  * Echo REST endpoint class
  **/
 @Component
-@Path("/timestamp")
-public interface Timestamp {
+@Path("/address")
+public interface Address {
 
     @GET
-    @Path("/timestamp")
+    @Path("/address")
     @Produces({ MediaType.APPLICATION_JSON })
-    public long timestamp();
+    public String getAddress();
 
 }
